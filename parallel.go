@@ -1,12 +1,22 @@
 package parallel
 
+// Input is used to pass multiple payloads to the processor.
 type Input []interface{}
+
+// Output contains all results produced by the callback.
 type Output []interface{}
+
+// Callback defines the sigiture the callback function needs to follow.
 type Callback func(interface{}) interface{}
+
+// Processor does the work.
 type Processor struct {
 	Threads int
 }
 
+// Process takes the input and callback and returns the output. It will
+// start a defined number of threads that will start processing the input
+// untill all are done.
 func (ap *Processor) Process(input Input, callback Callback) Output {
 	var out Output
 
